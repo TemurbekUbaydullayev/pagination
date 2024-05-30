@@ -5,6 +5,7 @@ using ForUserApi.Interfaces.Services;
 using ForUserApi.Repositories;
 using ForUserApi.Services;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
