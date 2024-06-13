@@ -8,7 +8,7 @@ namespace ForUserApi.Common.Extensions;
 #pragma warning disable
 public static class PaginationExtension
 {
-    public static async Task<IEnumerable<T>> ToPagedListAsync<T>(this IQueryable<T> sourse, 
+    public static async Task<IList<T>> ToPagedListAsync<T>(this IQueryable<T> sourse, 
                                                                 PaginationParams @params)
     {
         if (@params.PageIndex == 0 ||  @params.PageSize == 0) 

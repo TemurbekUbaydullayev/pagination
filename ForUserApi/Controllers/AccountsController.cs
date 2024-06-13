@@ -11,7 +11,7 @@ public class AccountsController(IAccountService service) : ControllerBase
     private readonly IAccountService _service = service;
 
     [HttpPost("register")]
-    public async Task<IActionResult> RegisterAsync([FromForm]AddUserDto dto)
+    public async Task<IActionResult> RegisterAsync(AddUserDto dto)
     {
         await _service.RegisterAsync(dto);
         return Ok();

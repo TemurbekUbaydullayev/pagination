@@ -7,12 +7,22 @@ using ForUserApi.Services;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.Configure<ConfigurationOptions>(
+                builder.Configuration.GetSection("RedisCacheOptions"));
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("RedisCacheConnectionString");
+    options.InstanceName = "UsersAPI";
+});
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -23,6 +33,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddTransient<IUserInterface, UserRepository>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRedisService, RedisService>();
 
 var app = builder.Build();
 

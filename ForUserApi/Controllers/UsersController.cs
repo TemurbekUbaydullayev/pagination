@@ -12,7 +12,7 @@ public class UsersController(IUserService service) : ControllerBase
 
     [HttpGet("users")]
     public async Task<IActionResult> GetAllAsync([FromQuery]PaginationParams @params)
-        => Ok(await _service.GetAllAsync(@params, p => p.IsVerified));
+        => Ok(await _service.GetAllAsync(@params, p => p.IsVerified != true));
 
     [HttpGet("id")]
     public async Task<IActionResult> GetByIdAsync(Guid id)

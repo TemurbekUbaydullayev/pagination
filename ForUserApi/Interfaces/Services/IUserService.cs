@@ -9,8 +9,8 @@ public interface IUserService
 {
     Task UpdateAsync(AddUserDto dto);
     Task DeleteAsync(Guid id);
-    Task<UserDto> GetByIdAsync(Guid id);
-    Task<UserDto> GetByNameAsync(string name);
-    Task<IEnumerable<UserDto>> GetAllAsync(PaginationParams @params,
+    Task<string> GetByIdAsync(Guid id);
+    Task<string> GetByNameAsync(string name);
+    Task<string> GetAllAsync(PaginationParams @params,
                                            Expression<Func<User, bool>>? expression = null);
 }
